@@ -612,6 +612,21 @@ section {
   border-top: 1px solid rgba(23, 56, 32, 0.14);
 }
 
+.crew-photo {
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(23, 56, 32, 0.08);
+}
+
+.crew-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* ---------- how it works ---------- */
 
 .steps {
