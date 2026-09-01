@@ -534,6 +534,51 @@ section {
   font-size: 0.95rem;
 }
 
+/* ---------- our faith ---------- */
+
+.faith-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--sky-100);
+  color: var(--forest-700);
+}
+
+.faith-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.faith-content {
+  max-width: 62ch;
+  margin: 0 auto;
+}
+
+.faith-content p {
+  color: #3b4437;
+  font-size: 1.05rem;
+  margin-bottom: 1.25rem;
+}
+
+.faith-content p:last-child {
+  margin-bottom: 0;
+}
+
+.faith-closing {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--forest-800);
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(23, 56, 32, 0.14);
+}
+
 /* ---------- how it works ---------- */
 
 .steps {
