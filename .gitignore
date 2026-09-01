@@ -1,0 +1,6 @@
+# Claude Code tooling (not part of the site)
+.agents/
+.claude/settings.local.json
+.claude/skills/
+.mcp.json
+skills-lock.json
