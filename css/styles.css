@@ -539,7 +539,7 @@ section {
 .faith-icon {
   width: 56px;
   height: 56px;
-  margin: 0 auto 1.25rem;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -551,6 +551,39 @@ section {
 .faith-icon svg {
   width: 26px;
   height: 26px;
+}
+
+.faith-people {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.25rem, 5vw, 3rem);
+  margin: 0 0 1.25rem;
+}
+
+.faith-person {
+  margin: 0;
+  text-align: center;
+}
+
+.faith-person img {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  background: var(--cream-200);
+  border: 3px solid var(--white);
+  box-shadow: var(--shadow-card);
+  display: block;
+}
+
+.faith-person figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--forest-800);
 }
 
 .faith-content {
@@ -1123,6 +1156,21 @@ section {
 @media (max-width: 480px) {
   .hero {
     padding-top: 3rem;
+  }
+
+  .faith-person img {
+    width: 76px;
+    height: 76px;
+  }
+
+  .faith-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .faith-icon svg {
+    width: 20px;
+    height: 20px;
   }
 
   .section-pad {
