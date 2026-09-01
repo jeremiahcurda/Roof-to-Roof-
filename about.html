@@ -118,5 +118,54 @@
   </div>
 </footer>
 
+<!-- ============ FALL PROMO POPUP ============ -->
+<div id="promo-modal" class="promo-modal" hidden>
+  <div class="promo-modal-backdrop" data-promo-close></div>
+  <div class="promo-modal-dialog" role="dialog" aria-modal="true" aria-label="Fall leaf cleanup special offer">
+    <button type="button" class="promo-modal-close" aria-label="Close" data-promo-close>&times;</button>
+    <a href="contact.html" class="promo-modal-link">
+      <img src="assets/fall-leaf-cleanup-flyer.jpg" alt="Fall Leaf Cleanup special from Root to Roof Relief — leaf removal, gutter cleaning, lawn cleanup and mulching, flower bed cleanup, storm debris removal. Call or text (423) 313-3384." />
+    </a>
+    <a href="contact.html" class="btn btn-primary btn-lg btn-block promo-modal-cta">Get a Free Quote</a>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var modal = document.getElementById('promo-modal');
+    if (!modal) return;
+    var KEY = 'r2r-fall-flyer-dismissed';
+
+    var alreadyDismissed = false;
+    try { alreadyDismissed = !!localStorage.getItem(KEY); } catch (e) {}
+    if (alreadyDismissed) return;
+
+    var timer = setTimeout(function () {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }, 1200);
+
+    function close() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    }
+
+    modal.querySelectorAll('[data-promo-close]').forEach(function (el) {
+      el.addEventListener('click', close);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) close();
+    });
+
+    modal.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      });
+    });
+  })();
+</script>
+
 </body>
 </html>
