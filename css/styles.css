@@ -728,28 +728,7 @@ section {
   justify-content: center;
 }
 
-/* ---------- yelp review band ---------- */
-
-.review-band {
-  padding: 2.75rem 0;
-}
-
-.review-band .wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-.review-band-text {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: var(--forest-800);
-  margin: 0;
-}
+/* ---------- yelp review button ---------- */
 
 .yelp-review-btn {
   display: inline-flex;
@@ -761,6 +740,7 @@ section {
   padding: 0.65rem 1.4rem;
   text-decoration: none;
   box-shadow: var(--shadow-card);
+  margin-top: 1.5rem;
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 
