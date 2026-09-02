@@ -450,6 +450,72 @@ p {
   height: auto;
 }
 
+/* ---------- fall promo strip ---------- */
+
+.promo-strip-section {
+  padding: 1.25rem 0;
+}
+
+.promo-strip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid rgba(23, 56, 32, 0.08);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 1.1rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.promo-strip:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.promo-strip-thumb {
+  width: 48px;
+  height: 62px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.promo-strip-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.promo-strip-text strong {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--forest-800);
+}
+
+.promo-strip-text span {
+  font-size: 0.82rem;
+  color: #4a5442;
+}
+
+.promo-strip-arrow {
+  flex-shrink: 0;
+  color: var(--soil-400);
+}
+
+.promo-strip-arrow svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
 /* ---------- section shells ---------- */
 
 section {
