@@ -672,6 +672,7 @@ section {
   border: 3px solid var(--white);
   box-shadow: var(--shadow-card);
   display: block;
+  margin: 0 auto;
 }
 
 .faith-person figcaption {
@@ -680,6 +681,17 @@ section {
   font-weight: 600;
   font-size: 0.85rem;
   color: var(--forest-800);
+}
+
+.faith-person-role {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--soil-600);
 }
 
 .faith-content {
@@ -826,6 +838,14 @@ section {
 
 /* ---------- yelp review button ---------- */
 
+.hero-secondary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
 .yelp-review-btn {
   display: inline-flex;
   align-items: center;
@@ -836,7 +856,6 @@ section {
   padding: 0.65rem 1.4rem;
   text-decoration: none;
   box-shadow: var(--shadow-card);
-  margin-top: 1.5rem;
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 
@@ -856,6 +875,39 @@ section {
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--ink-900);
+}
+
+.spanish-call-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--forest-700);
+  border: 1.5px solid var(--forest-700);
+  border-radius: 999px;
+  padding: 0.65rem 1.4rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
+}
+
+.spanish-call-btn:hover {
+  background: var(--forest-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.spanish-call-btn svg {
+  width: 20px;
+  height: 20px;
+  color: var(--cream-200);
+  flex-shrink: 0;
+}
+
+.spanish-call-btn span {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--white);
 }
 
 /* ---------- footer ---------- */
