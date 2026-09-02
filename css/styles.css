@@ -516,6 +516,36 @@ p {
   display: block;
 }
 
+.promo-strip-qr {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  padding-left: 0.85rem;
+  border-left: 1px solid rgba(23, 56, 32, 0.12);
+}
+
+.promo-strip-qr img {
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+}
+
+.promo-strip-qr span {
+  font-size: 0.72rem;
+  line-height: 1.25;
+  color: #4a5442;
+}
+
+/* a QR code is only useful to someone viewing on a screen other than the
+   one they'd scan with, so only show it once there's room for a desktop
+   layout */
+@media (min-width: 640px) {
+  .promo-strip-qr {
+    display: flex;
+  }
+}
+
 /* ---------- section shells ---------- */
 
 section {
@@ -984,6 +1014,33 @@ section {
 
 .promo-modal-cta {
   margin-top: 0.85rem;
+}
+
+.promo-modal-qr {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+
+.promo-modal-qr img {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.promo-modal-qr span {
+  font-size: 0.78rem;
+  color: #4a5442;
+}
+
+/* same reasoning as .promo-strip-qr - only useful on a screen other than
+   the one someone would scan it with */
+@media (min-width: 640px) {
+  .promo-modal-qr {
+    display: flex;
+  }
 }
 
 /* ---------- contact page ---------- */
