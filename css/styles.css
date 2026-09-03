@@ -649,16 +649,24 @@ section {
   height: 26px;
 }
 
+.faith-icon--standalone {
+  margin: 1.1rem auto 0;
+}
+
 .faith-people {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: center;
-  gap: clamp(1.25rem, 5vw, 3rem);
-  margin: 0 0 1.25rem;
+  row-gap: 2rem;
+  column-gap: clamp(1.5rem, 5vw, 3.5rem);
+  max-width: 620px;
+  margin: 0 auto 1.25rem;
 }
 
 .faith-person {
   margin: 0;
+  width: 150px;
   text-align: center;
 }
 
