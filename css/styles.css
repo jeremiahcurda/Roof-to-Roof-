@@ -988,6 +988,16 @@ section {
   font-size: 0.82rem;
 }
 
+.footer-staff-link {
+  color: rgba(251, 248, 238, 0.55);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-staff-link:hover {
+  color: var(--cream-100);
+}
+
 /* ---------- promo popup ---------- */
 
 .promo-modal {
