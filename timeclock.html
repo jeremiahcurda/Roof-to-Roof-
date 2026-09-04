@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Employee Time Clock | Root to Roof Relief</title>
+<meta name="description" content="Root to Roof Relief employee time clock." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header no-print">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <img class="brand-logo-img" src="assets/logo-full.png" alt="Root to Roof Relief" />
+    </a>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#why-us">Why Us</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="phone-pill" href="tel:+14233133384">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>(423) 313-3384</span>
+      </a>
+      <a class="btn btn-primary" href="contact.html">Get a Free Quote</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="timeclock-shell">
+
+    <div class="print-only print-header">
+      <img src="assets/logo-full.png" alt="Root to Roof Relief" />
+      <h1>Weekly Hours Summary</h1>
+    </div>
+
+    <div class="section-head no-print" style="margin-bottom:2rem;">
+      <p class="eyebrow" style="justify-content:center;display:flex;">Staff Only</p>
+      <h2>Employee Time Clock</h2>
+      <p>Clock in and out, or pull the weekly hours summary.</p>
+    </div>
+
+    <div class="timeclock-tabs no-print">
+      <button type="button" class="timeclock-tab-btn is-active" data-tab="clock">Clock In / Out</button>
+      <button type="button" class="timeclock-tab-btn" data-tab="summary">Weekly Summary</button>
+    </div>
+
+    <!-- ============ EMPLOYEE CLOCK PANEL ============ -->
+    <div class="timeclock-panel is-active no-print" data-panel="clock">
+
+      <form id="clock-login-form" class="timeclock-card">
+        <h3>Log In</h3>
+        <div class="field">
+          <label for="clock-name">Your name</label>
+          <select id="clock-name" required>
+            <option value="" disabled selected>Select your name</option>
+            <option>Bryan</option>
+            <option>Jeremiah</option>
+            <option>Vincent</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="clock-pin">4-digit PIN</label>
+          <input type="password" id="clock-pin" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Log In</button>
+        <p class="form-status" id="clock-login-status" aria-live="polite"></p>
+      </form>
+
+      <div class="timeclock-card timeclock-status-card" id="clock-status-card" hidden>
+        <p class="timeclock-greeting">Hi, <span id="clock-status-name"></span></p>
+        <p class="timeclock-status-line" id="clock-status-line">Checking status&hellip;</p>
+        <button type="button" class="btn btn-lg btn-block" id="clock-toggle-btn"></button>
+        <button type="button" class="timeclock-logout" id="clock-logout-btn">Not you? Log out</button>
+      </div>
+
+    </div>
+
+    <!-- ============ MANAGER SUMMARY PANEL ============ -->
+    <div class="timeclock-panel no-print" data-panel="summary">
+
+      <form id="summary-login-form" class="timeclock-card">
+        <h3>Manager Access</h3>
+        <div class="field">
+          <label for="manager-pin">Manager PIN</label>
+          <input type="password" id="manager-pin" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">View Summary</button>
+        <p class="form-status" id="summary-login-status" aria-live="polite"></p>
+      </form>
+
+      <div class="timeclock-card" id="summary-card" hidden>
+        <div class="timeclock-week-nav no-print">
+          <button type="button" class="btn btn-outline" id="week-prev">&larr; Prev Week</button>
+          <span id="week-label" class="timeclock-week-label"></span>
+          <button type="button" class="btn btn-outline" id="week-next">Next Week &rarr;</button>
+        </div>
+
+        <h3 class="print-only" id="print-week-label"></h3>
+
+        <div class="timeclock-summary-table-wrap">
+          <table class="timeclock-summary-table" id="summary-table">
+            <thead>
+              <tr><th>Employee</th><th>Shifts</th><th>Total Hours</th></tr>
+            </thead>
+            <tbody id="summary-table-body"></tbody>
+          </table>
+        </div>
+
+        <div class="timeclock-actions no-print">
+          <button type="button" class="btn btn-primary btn-lg" id="print-summary-btn">Print Summary</button>
+          <button type="button" class="timeclock-logout" id="summary-logout-btn">Log out</button>
+        </div>
+
+        <p class="print-only print-footer">Printed <span id="print-date"></span> &middot; Root to Roof Relief</p>
+      </div>
+
+    </div>
+
+  </section>
+</main>
+
+<footer class="site-footer no-print">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">
+          <span class="footer-logo-chip">
+            <img src="assets/logo-full.png" alt="Root to Roof Relief" />
+          </span>
+        </a>
+        <p class="footer-tagline">From your lawn to your roof, we've got you covered — your complete property partner.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#why-us">Why Us</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#how-it-works">How It Works</a></li>
+          <li><a href="contact.html">Get a Free Quote</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+14233133384">(423) 313-3384</a></li>
+          <li><a href="mailto:rrr@turh-is-life.org">rrr@turh-is-life.org</a></li>
+          <li>Serving the Chattanooga area</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Root to Roof Relief. All rights reserved.</span>
+      <span>Locally owned &amp; operated</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const SUPABASE_URL = "https://kcrvdqbubwtpykzdfyqa.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_tnLp-i_c3aIpIVJennQQZA_CfB99xQi";
+
+  async function callFunction(name, payload) {
+    const res = await fetch(SUPABASE_URL + "/functions/v1/" + name, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY,
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json().catch(function () { return {}; });
+    if (!res.ok) throw new Error(data.error || "Something went wrong.");
+    return data;
+  }
+
+  // ---------- Tabs ----------
+  const tabButtons = document.querySelectorAll(".timeclock-tab-btn");
+  const panels = document.querySelectorAll(".timeclock-panel");
+  tabButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      tabButtons.forEach(function (b) { b.classList.remove("is-active"); });
+      panels.forEach(function (p) { p.classList.remove("is-active"); });
+      btn.classList.add("is-active");
+      document.querySelector('.timeclock-panel[data-panel="' + btn.dataset.tab + '"]').classList.add("is-active");
+    });
+  });
+
+  // ---------- Employee clock in/out ----------
+  const loginForm = document.getElementById("clock-login-form");
+  const loginStatus = document.getElementById("clock-login-status");
+  const statusCard = document.getElementById("clock-status-card");
+  const statusName = document.getElementById("clock-status-name");
+  const statusLine = document.getElementById("clock-status-line");
+  const toggleBtn = document.getElementById("clock-toggle-btn");
+  const logoutBtn = document.getElementById("clock-logout-btn");
+
+  let clockToken = sessionStorage.getItem("r2r_clock_token") || "";
+  let clockEmployeeName = sessionStorage.getItem("r2r_clock_name") || "";
+
+  function formatTime(iso) {
+    return new Date(iso).toLocaleString(undefined, { weekday: "short", hour: "numeric", minute: "2-digit" });
+  }
+
+  function renderClockStatus(data) {
+    statusName.textContent = data.employee.name;
+    if (data.clocked_in) {
+      statusLine.textContent = "Clocked in since " + formatTime(data.clock_in);
+      toggleBtn.textContent = "Clock Out";
+      toggleBtn.className = "btn btn-lg btn-block timeclock-clockout-btn";
+    } else {
+      statusLine.textContent = "You're currently clocked out.";
+      toggleBtn.textContent = "Clock In";
+      toggleBtn.className = "btn btn-lg btn-block btn-primary";
+    }
+  }
+
+  async function refreshStatus() {
+    if (!clockToken) return;
+    try {
+      const data = await callFunction("timeclock-clock", { token: clockToken, action: "status" });
+      loginForm.hidden = true;
+      statusCard.hidden = false;
+      renderClockStatus(data);
+    } catch (err) {
+      sessionStorage.removeItem("r2r_clock_token");
+      sessionStorage.removeItem("r2r_clock_name");
+      clockToken = "";
+      loginForm.hidden = false;
+      statusCard.hidden = true;
+    }
+  }
+
+  loginForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    loginStatus.textContent = "Logging in…";
+    const name = document.getElementById("clock-name").value;
+    const pin = document.getElementById("clock-pin").value;
+    try {
+      const data = await callFunction("timeclock-login", { name: name, pin: pin });
+      clockToken = data.token;
+      clockEmployeeName = data.employee.name;
+      sessionStorage.setItem("r2r_clock_token", clockToken);
+      sessionStorage.setItem("r2r_clock_name", clockEmployeeName);
+      loginStatus.textContent = "";
+      document.getElementById("clock-pin").value = "";
+      await refreshStatus();
+    } catch (err) {
+      loginStatus.textContent = err.message;
+    }
+  });
+
+  toggleBtn.addEventListener("click", async function () {
+    const isClockOut = toggleBtn.textContent.trim() === "Clock Out";
+    toggleBtn.disabled = true;
+    try {
+      const data = await callFunction("timeclock-clock", { token: clockToken, action: isClockOut ? "out" : "in" });
+      renderClockStatus(data);
+    } catch (err) {
+      statusLine.textContent = err.message;
+    } finally {
+      toggleBtn.disabled = false;
+    }
+  });
+
+  logoutBtn.addEventListener("click", function () {
+    sessionStorage.removeItem("r2r_clock_token");
+    sessionStorage.removeItem("r2r_clock_name");
+    clockToken = "";
+    statusCard.hidden = true;
+    loginForm.hidden = false;
+    loginForm.reset();
+  });
+
+  refreshStatus();
+
+  // ---------- Manager weekly summary ----------
+  const summaryLoginForm = document.getElementById("summary-login-form");
+  const summaryLoginStatus = document.getElementById("summary-login-status");
+  const summaryCard = document.getElementById("summary-card");
+  const summaryTableBody = document.getElementById("summary-table-body");
+  const weekLabel = document.getElementById("week-label");
+  const printWeekLabel = document.getElementById("print-week-label");
+
+  let managerPin = sessionStorage.getItem("r2r_manager_pin") || "";
+  let weekMonday = getMonday(new Date());
+
+  function getMonday(d) {
+    const date = new Date(d);
+    const day = date.getDay();
+    const diff = (day === 0 ? -6 : 1) - day;
+    date.setDate(date.getDate() + diff);
+    date.setHours(0, 0, 0, 0);
+    return date;
+  }
+
+  function formatDateShort(d) {
+    return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  }
+
+  function formatDateEntry(iso) {
+    return new Date(iso).toLocaleString(undefined, { weekday: "short", hour: "numeric", minute: "2-digit" });
+  }
+
+  async function loadSummary() {
+    const rangeStart = weekMonday.toISOString();
+    const rangeEnd = new Date(weekMonday.getTime() + 7 * 86400000).toISOString();
+    const weekEndDisplay = new Date(weekMonday.getTime() + 6 * 86400000);
+
+    const labelText = formatDateShort(weekMonday) + " – " + formatDateShort(weekEndDisplay) + ", " + weekEndDisplay.getFullYear();
+    weekLabel.textContent = labelText;
+    printWeekLabel.textContent = "Week of " + labelText;
+
+    try {
+      const data = await callFunction("timeclock-summary", {
+        manager_pin: managerPin,
+        range_start: rangeStart,
+        range_end: rangeEnd,
+      });
+
+      summaryTableBody.innerHTML = "";
+      data.employees.forEach(function (emp) {
+        const tr = document.createElement("tr");
+
+        const shiftsHtml = emp.entries.length
+          ? emp.entries.map(function (en) {
+              const outText = en.ongoing ? "still clocked in" : formatDateEntry(en.clock_out);
+              return formatDateEntry(en.clock_in) + " → " + outText;
+            }).join("<br>")
+          : "<span class=\"timeclock-muted\">No shifts</span>";
+
+        tr.innerHTML =
+          "<td>" + emp.name + "</td>" +
+          "<td>" + shiftsHtml + "</td>" +
+          "<td>" + emp.total_hours.toFixed(2) + "</td>";
+        summaryTableBody.appendChild(tr);
+      });
+
+      summaryLoginForm.hidden = true;
+      summaryCard.hidden = false;
+    } catch (err) {
+      summaryLoginStatus.textContent = err.message;
+      sessionStorage.removeItem("r2r_manager_pin");
+      managerPin = "";
+    }
+  }
+
+  summaryLoginForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    summaryLoginStatus.textContent = "Checking…";
+    managerPin = document.getElementById("manager-pin").value;
+    try {
+      await loadSummary();
+      sessionStorage.setItem("r2r_manager_pin", managerPin);
+      summaryLoginStatus.textContent = "";
+    } catch (err) {
+      summaryLoginStatus.textContent = err.message;
+    }
+  });
+
+  document.getElementById("week-prev").addEventListener("click", function () {
+    weekMonday = new Date(weekMonday.getTime() - 7 * 86400000);
+    loadSummary();
+  });
+
+  document.getElementById("week-next").addEventListener("click", function () {
+    weekMonday = new Date(weekMonday.getTime() + 7 * 86400000);
+    loadSummary();
+  });
+
+  document.getElementById("print-summary-btn").addEventListener("click", function () {
+    document.getElementById("print-date").textContent = new Date().toLocaleDateString();
+    window.print();
+  });
+
+  document.getElementById("summary-logout-btn").addEventListener("click", function () {
+    sessionStorage.removeItem("r2r_manager_pin");
+    managerPin = "";
+    summaryCard.hidden = true;
+    summaryLoginForm.hidden = false;
+    summaryLoginForm.reset();
+  });
+
+  if (managerPin) {
+    loadSummary();
+  }
+})();
+</script>
+
+</body>
+</html>

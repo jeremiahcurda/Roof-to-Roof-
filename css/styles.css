@@ -1414,3 +1414,233 @@ section {
     padding: 1.75rem;
   }
 }
+
+/* ---------- time clock ---------- */
+
+.timeclock-shell {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 5rem;
+}
+
+.timeclock-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.timeclock-tab-btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(23, 56, 32, 0.16);
+  background: var(--cream-100);
+  color: var(--forest-800);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+
+.timeclock-tab-btn.is-active {
+  background: var(--forest-700);
+  color: var(--white);
+  border-color: var(--forest-700);
+}
+
+.timeclock-panel {
+  display: none;
+}
+
+.timeclock-panel.is-active {
+  display: block;
+}
+
+.timeclock-card {
+  background: var(--cream-100);
+  border: 1px solid rgba(23, 56, 32, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.timeclock-card + .timeclock-card {
+  margin-top: 1.5rem;
+}
+
+.timeclock-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.timeclock-card .field:last-of-type {
+  margin-bottom: 1.5rem;
+}
+
+#clock-pin,
+#manager-pin {
+  letter-spacing: 0.6em;
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: var(--font-display);
+}
+
+.timeclock-status-card {
+  text-align: center;
+}
+
+.timeclock-greeting {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--forest-800);
+  margin-bottom: 0.4rem;
+}
+
+.timeclock-status-line {
+  color: #45503f;
+  margin-bottom: 1.5rem;
+}
+
+.timeclock-clockout-btn {
+  background: var(--soil-600);
+  color: var(--white);
+}
+
+.timeclock-clockout-btn:hover {
+  background: var(--soil-400);
+}
+
+.timeclock-logout {
+  display: block;
+  margin: 1.1rem auto 0;
+  background: none;
+  border: none;
+  color: var(--forest-700);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.timeclock-week-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.timeclock-week-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--forest-800);
+}
+
+.timeclock-summary-table-wrap {
+  overflow-x: auto;
+}
+
+.timeclock-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.timeclock-summary-table th,
+.timeclock-summary-table td {
+  text-align: left;
+  padding: 0.75rem 0.6rem;
+  border-bottom: 1px solid rgba(23, 56, 32, 0.12);
+  vertical-align: top;
+}
+
+.timeclock-summary-table th {
+  font-family: var(--font-display);
+  color: var(--forest-800);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.timeclock-muted {
+  color: #8a9284;
+  font-style: italic;
+}
+
+.timeclock-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.75rem;
+}
+
+.print-only {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .timeclock-shell {
+    padding: 2.5rem 1.25rem 4rem;
+  }
+
+  .timeclock-tab-btn {
+    font-size: 0.85rem;
+    padding: 0.65rem 0.5rem;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .timeclock-shell {
+    max-width: none;
+    padding: 0;
+  }
+
+  .print-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .print-header img {
+    height: 48px;
+    width: auto;
+  }
+
+  .print-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .timeclock-card {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+
+  .timeclock-summary-table th,
+  .timeclock-summary-table td {
+    border: 1px solid #333;
+    padding: 6px 8px;
+  }
+
+  .print-footer {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: #555;
+  }
+}
