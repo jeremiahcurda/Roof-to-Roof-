@@ -83,6 +83,12 @@
       <div class="timeclock-card timeclock-status-card" id="clock-status-card" hidden>
         <p class="timeclock-greeting">Hi, <span id="clock-status-name"></span></p>
         <p class="timeclock-status-line" id="clock-status-line">Checking status&hellip;</p>
+
+        <div class="field" id="clock-job-field">
+          <label for="clock-job-note">Job / Location</label>
+          <input type="text" id="clock-job-note" placeholder="e.g. 412 Maple St &mdash; mowing &amp; edging" maxlength="200" />
+        </div>
+
         <button type="button" class="btn btn-lg btn-block" id="clock-toggle-btn"></button>
         <button type="button" class="timeclock-logout" id="clock-logout-btn">Not you? Log out</button>
       </div>
@@ -212,6 +218,8 @@
   const statusLine = document.getElementById("clock-status-line");
   const toggleBtn = document.getElementById("clock-toggle-btn");
   const logoutBtn = document.getElementById("clock-logout-btn");
+  const jobField = document.getElementById("clock-job-field");
+  const jobInput = document.getElementById("clock-job-note");
 
   let clockToken = sessionStorage.getItem("r2r_clock_token") || "";
   let clockEmployeeName = sessionStorage.getItem("r2r_clock_name") || "";
@@ -223,13 +231,17 @@
   function renderClockStatus(data) {
     statusName.textContent = data.employee.name;
     if (data.clocked_in) {
-      statusLine.textContent = "Clocked in since " + formatTime(data.clock_in);
+      statusLine.textContent = "Clocked in since " + formatTime(data.clock_in) +
+        (data.job_note ? " — " + data.job_note : "");
       toggleBtn.textContent = "Clock Out";
       toggleBtn.className = "btn btn-lg btn-block timeclock-clockout-btn";
+      jobField.hidden = true;
     } else {
       statusLine.textContent = "You're currently clocked out.";
       toggleBtn.textContent = "Clock In";
       toggleBtn.className = "btn btn-lg btn-block btn-primary";
+      jobField.hidden = false;
+      jobInput.value = "";
     }
   }
 
@@ -272,7 +284,9 @@
     const isClockOut = toggleBtn.textContent.trim() === "Clock Out";
     toggleBtn.disabled = true;
     try {
-      const data = await callFunction("timeclock-clock", { token: clockToken, action: isClockOut ? "out" : "in" });
+      const payload = { token: clockToken, action: isClockOut ? "out" : "in" };
+      if (!isClockOut) payload.note = jobInput.value;
+      const data = await callFunction("timeclock-clock", payload);
       renderClockStatus(data);
     } catch (err) {
       statusLine.textContent = err.message;
@@ -320,6 +334,12 @@
     return new Date(iso).toLocaleString(undefined, { weekday: "short", hour: "numeric", minute: "2-digit" });
   }
 
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
   async function loadSummary() {
     const rangeStart = weekMonday.toISOString();
     const rangeEnd = new Date(weekMonday.getTime() + 7 * 86400000).toISOString();
@@ -343,7 +363,10 @@
         const shiftsHtml = emp.entries.length
           ? emp.entries.map(function (en) {
               const outText = en.ongoing ? "still clocked in" : formatDateEntry(en.clock_out);
-              return formatDateEntry(en.clock_in) + " → " + outText;
+              const jobHtml = en.job_note
+                ? " <span class=\"timeclock-job-note\">— " + escapeHtml(en.job_note) + "</span>"
+                : "";
+              return formatDateEntry(en.clock_in) + " → " + outText + jobHtml;
             }).join("<br>")
           : "<span class=\"timeclock-muted\">No shifts</span>";
 

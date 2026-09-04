@@ -1581,6 +1581,11 @@ section {
   font-style: italic;
 }
 
+.timeclock-job-note {
+  color: var(--soil-600);
+  font-style: italic;
+}
+
 .timeclock-actions {
   display: flex;
   flex-direction: column;
